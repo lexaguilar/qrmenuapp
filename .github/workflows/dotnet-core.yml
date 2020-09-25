@@ -21,5 +21,6 @@ jobs:
         ftp-username: serviciostesting-001
         ftp-password: ${{ secrets.FTP_PASSWORD }}
         local_dir: ./qrmenuapp/bin/Debug/netcoreapp3.1/publish/
+        local-dir: ./qrmenuapp/bin/Debug/netcoreapp3.1/publish/
 
       
