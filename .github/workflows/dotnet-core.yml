@@ -35,5 +35,6 @@ jobs:
         ftp-password: ${{ secrets.FTP_PASSWORD }}
         local_dir: ./dotnetcorewebapp2
         local-dir: ./dotnetcorewebapp2
+        git-ftp-args: --all
    
   
