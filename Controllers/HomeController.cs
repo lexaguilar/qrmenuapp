@@ -122,6 +122,8 @@ namespace qrmenuapp.Controllers
             itemOld.MonedaId = item.MonedaId;
             itemOld.IsSuggestion = item.IsSuggestion;
             itemOld.Title = item.Title;
+            itemOld.UrlImagen = item.UrlImagen;
+            itemOld.Descripcion = item.Descripcion;
 
             db.SaveChanges();
 
