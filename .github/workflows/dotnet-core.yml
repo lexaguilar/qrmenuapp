@@ -12,14 +12,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: 'Deploy to UAT'
-      uses: januszmarcinik/ftp-deploy@v1
-      with:
-        server: ftp://ftp.site4now.net/qrcubeapp/
-        user: serviciostesting-001
-        password: ${{ secrets.FTP_PASSWORD }}
-        localRoot: bin/Debug/netcoreapp3.1/publish/      
-  
+    - uses: actions/checkout@v2  
       
+
+    - name: FTP Deployer
+      uses: sand4rt/ftp-deployer@v0.9
+      with:
+        host: ftp://ftp.site4now.net/qrcubeapp/
+        port: 21 
+        username: serviciostesting-001
+        password: ${{ secrets.FTP_PASSWORD }}       
+        # The local folder location
+        local_folder: bin # optional, default is dist
+        # Remove existing files inside FTP remote folder
+        cleanup: false # optional      
+        exclude: web.config             
+        pasive: true # optional
