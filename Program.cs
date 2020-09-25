@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +12,7 @@ namespace qrmenuapp
 {
     public class Program
     {
+        public static readonly Version version = Assembly.GetCallingAssembly().GetName().Version;
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
