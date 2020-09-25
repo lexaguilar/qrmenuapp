@@ -36,6 +36,9 @@ namespace qrmenuapp.Controllers
             .Include(x => x.Items)
             .ThenInclude(y => y.Moneda)
             .FirstOrDefault(x => x.Name == name);
+
+            if(menuClient==null)
+                return NotFound();
             
             var items = menuClient.Items.Select(x => new
             {
