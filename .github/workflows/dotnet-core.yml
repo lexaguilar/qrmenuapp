@@ -13,17 +13,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2  
+    
+    - name: Upload public_html via FTP
+        uses: airvzxf/ftp-deployment-action@v1.0-alpha.1
+        with:
+          server: ftp://ftp.site4now.net/qrcubeapp/
+          user: serviciostesting-001
+          password: ${{ secrets.FTP_PASSWORD }}
+          delete: "true"
+          local_dir: "bin"
       
-
-    - name: FTP Deployer
-      uses: sand4rt/ftp-deployer@v0.9
-      with:
-        host: ftp://ftp.site4now.net
-        port: 21 
-        username: serviciostesting-001
-        password: ${{ secrets.FTP_PASSWORD }}       
-        # The local folder location
-        local_folder: bin
-        remote_folder: qrcubeapp
 
 
