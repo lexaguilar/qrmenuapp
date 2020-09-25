@@ -13,13 +13,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      
-    - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+    
+    - name: 'Deploy to UAT'
+      uses: januszmarcinik/ftp-deploy@v1
       with:
-        ftp-server: ftp://ftp.site4now.net/qrcubeapp/
-        ftp-username: serviciostesting-001
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
-        local_dir: bin/Debug/netcoreapp3.1/publish/
-        local-dir: bin/Debug/netcoreapp3.1/publish/
+        server: ftp://ftp.site4now.net/qrcubeapp/
+        user: serviciostesting-001
+        password: ${{ secrets.FTP_PASSWORD }}
+        localRoot: bin/Debug/netcoreapp3.1/publish/      
+  
       
