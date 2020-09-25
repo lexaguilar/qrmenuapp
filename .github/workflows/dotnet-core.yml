@@ -13,12 +13,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      
+    - name: Find and Replace
+      uses: shitiomatic/str-replace@master
+      with:
+        find: "1.0.0"
+        replace: "1.0.2"
+        include: "qrmenuapp.csproj"
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore      
+      
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
