@@ -23,8 +23,6 @@ jobs:
         username: serviciostesting-001
         password: ${{ secrets.FTP_PASSWORD }}       
         # The local folder location
-        local_folder: bin # optional, default is dist
-        # Remove existing files inside FTP remote folder
-        cleanup: false # optional      
-        exclude: web.config             
-        pasive: true # optional
+        local_folder: bin
+
+
