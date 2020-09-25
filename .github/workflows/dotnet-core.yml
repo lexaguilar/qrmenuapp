@@ -26,5 +26,14 @@ jobs:
     - name: Publish
       run: |
         dotnet publish -c Release -o dotnetcorewebapp 
+        
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      with:
+        ftp-server: ftp://ftp.site4now.net/qrcubeapp/
+        ftp-username: serviciostesting-001
+        ftp-password: ${{ secrets.FTP_PASSWORD }}
+        local_dir: ./dotnetcorewebapp
+        local-dir: ./dotnetcorewebapp
    
   
