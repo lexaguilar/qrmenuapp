@@ -18,11 +18,12 @@ jobs:
     - name: FTP Deployer
       uses: sand4rt/ftp-deployer@v0.9
       with:
-        host: ftp://ftp.site4now.net/qrcubeapp/
+        host: ftp://ftp.site4now.net
         port: 21 
         username: serviciostesting-001
         password: ${{ secrets.FTP_PASSWORD }}       
         # The local folder location
         local_folder: bin
+        remote_folder: qrcubeapp
 
 
