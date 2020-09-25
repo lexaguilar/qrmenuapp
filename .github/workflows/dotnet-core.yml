@@ -13,15 +13,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2  
+    - name: Upload bundle
+      uses: bayssmekanique/action-simple-file-upload@v1
+      with:
+        user: serviciostesting-001
+        password: ${{ secrets.FTP_PASSWORD }}
+        host: ftp://ftp.site4now.net
+        src: bin
+        dest: qrcubeapp/
     
-    - name: Upload public_html via FTP
-        uses: airvzxf/ftp-deployment-action@v1.0-alpha.1
-        with:
-          server: ftp://ftp.site4now.net/qrcubeapp/
-          user: serviciostesting-001
-          password: ${{ secrets.FTP_PASSWORD }}
-          delete: "true"
-          local_dir: "bin"
-      
 
 
