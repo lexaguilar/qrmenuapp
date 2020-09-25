@@ -33,8 +33,8 @@ jobs:
         ftp-server: ftp://ftp.site4now.net/qrcubeapp/
         ftp-username: serviciostesting-001
         ftp-password: ${{ secrets.FTP_PASSWORD }}
-        local_dir: ./dotnetcorewebapp2
-        local-dir: ./dotnetcorewebapp2
+        local_dir: dotnetcorewebapp2/
+        local-dir: dotnetcorewebapp2/
         git-ftp-args: --all
    
   
