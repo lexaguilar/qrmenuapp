@@ -20,6 +20,6 @@ jobs:
         ftp-server: ftp://ftp.site4now.net/qrcubeapp/
         ftp-username: serviciostesting-001
         ftp-password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: "./bin/Debug/netcoreapp3.1/publish/"
+        local-dir: "./qrmenuapp/bin/Debug/netcoreapp3.1/publish/"
 
       
