@@ -33,7 +33,7 @@ jobs:
         ftp-username: serviciostesting-001
         ftp-password: ${{ secrets.FTP_PASSWORD }}
         delete: "true"
-        local_dir: "bin/Release/netcoreapp3.1/"
+        local_dir: "/home/runner/work/qrmenuapp/qrmenuapp/bin/Debug/netcoreapp3.1/publish/"
         
     - name: Send Push Notification
       uses: techulus/push-github-action@1.0.0
