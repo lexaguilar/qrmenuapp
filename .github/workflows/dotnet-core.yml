@@ -12,15 +12,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2  
-    - name: Upload bundle
-      uses: bayssmekanique/action-simple-file-upload@v1
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
       with:
-        user: serviciostesting-001
-        password: ${{ secrets.FTP_PASSWORD }}
-        host: ftp://ftp.site4now.net
-        src: bin
-        dest: qrcubeapp/
-    
-
-
+        dotnet-version: 3.1.301
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal       
+    - name: Publish
+      run: |
+        dotnet publish -c Release -o dotnetcorewebapp 
+   
+  
