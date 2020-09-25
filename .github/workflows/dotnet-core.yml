@@ -13,18 +13,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.301
-    - name: Install dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
-    - name: Publish
-      run: dotnet publish
       
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@3.1.1
@@ -32,11 +20,6 @@ jobs:
         ftp-server: ftp://ftp.site4now.net/qrcubeapp/
         ftp-username: serviciostesting-001
         ftp-password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: "/bin/Debug/netcoreapp3.1/publish/"
-        
-    - name: Send Push Notification
-      uses: techulus/push-github-action@1.0.0
-      env:
-        API_KEY: ${{ secrets.API_KEY }}
-        MESSAGE: "Una nueva publicacion link http://qrcubeapp.eurekani.com/!"
+        local-dir: "./bin/Debug/netcoreapp3.1/publish/"
+
       
