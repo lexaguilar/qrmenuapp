@@ -1,1 +1,2 @@
-wwwroot/
+!appsettings.Development.json
+!wwwroot/
