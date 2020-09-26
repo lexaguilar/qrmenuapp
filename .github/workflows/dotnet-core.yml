@@ -29,12 +29,13 @@ jobs:
         
   
     - name: Publish
-      uses: socram8888/ftp-hash-sync@v1
+      uses: isthatcentered/dist-to-ftp@master
       with:
-            host: ftp://ftp.site4now.net
-            username: serviciostesting-001
-            password: ${{ secrets.FTP_PASSWORD }}
-            destination: qrcubeapp
-            source: dotnetcorewebapp2/
-   
+          user: serviciostesting-001 # Ftp user Ex:
+          password: ${{ secrets.FTP_PASSWORD }} # Ftp password Ex:
+          host: ftp://ftp.site4now.net # Ftp host Ex:
+          path: dotnetcorewebapp2/ # Folder to deploy Ex: apps/frontend/dist or dist
+          into: qrcubeapp # Where to place the files in your ftp
+          cleanupExisting: true # (Optional), Remove already ex
+     
   
