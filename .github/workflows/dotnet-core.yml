@@ -37,4 +37,4 @@ jobs:
       uses: techulus/push-github-action@1.0.0
       env:
         API_KEY: ${{ secrets.API_KEY }}
-        MESSAGE: "Una nueva publicacion link http://qrcubeapp.eurekani.com/!"
+        MESSAGE: "Una nueva publicacion link https://qrmenuapp.azurewebsites.net/"
