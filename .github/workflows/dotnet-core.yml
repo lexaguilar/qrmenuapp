@@ -27,14 +27,14 @@ jobs:
       run: |
         dotnet publish -c Release -o dotnetcorewebapp2 
         
-    - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+  
+    - name: Publish
+      uses: socram8888/ftp-hash-sync@v1
       with:
-        ftp-server: ftp://ftp.site4now.net/qrcubeapp/
-        ftp-username: serviciostesting-001
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
-        local_dir: dotnetcorewebapp2/
-        local-dir: dotnetcorewebapp2/
-        git-ftp-args: --all
+            host: ftp://ftp.site4now.net
+            username: serviciostesting-001
+            password: ${{ secrets.FTP_PASSWORD }}
+            destination: qrcubeapp
+            source: dotnetcorewebapp2/
    
   
