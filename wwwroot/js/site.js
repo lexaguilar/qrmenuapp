@@ -186,6 +186,15 @@ $(function(){
             visible: false
         }, {
             dataField: "descripcionName",
+            validationRules: [
+                { type: "required" },
+                {
+                    type: "stringLength",
+                    message: "Min 2 carateres y maximo 150",
+                    max : 150,
+                    min : 2
+                }
+            ]
         }]
     }).dxDataGrid("instance");
 });

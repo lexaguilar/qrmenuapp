@@ -116,6 +116,15 @@ $(function () {
         },
         columns: [{
             dataField: "title",
+            validationRules: [
+                { type: "required" },
+                {
+                    type: "stringLength",
+                    message: "Min 2 carateres y maximo 50",
+                    max : 50,
+                    min : 2
+                }
+            ]
         }, {
             dataField: "categoriaId",
             lookup: {
@@ -132,7 +141,10 @@ $(function () {
                 }),
                 displayExpr: "descripcion",
                 valueExpr: "id"
-            }
+            },
+            validationRules: [
+                { type: "required" },               
+            ]
         }, {
             dataField: "monedaId",
             lookup: {
@@ -149,18 +161,37 @@ $(function () {
                 }),
                 displayExpr: "descripcion",
                 valueExpr: "id"
-            }
+            },
+            validationRules: [
+                { type: "required" },               
+            ]
         }, {
             dataField: "price",
-            dataType: 'number'
-
+            dataType: 'number',
+            validationRules: [
+                { type: "numeric",ignoreEmptyValue:false, message: "Ingrese el precio"},               
+            ]
         }, {
             dataField: "isSuggestion",
-            dataType: 'boolean'
+            dataType: 'boolean',
         }, {
             dataField: "descripcion",
+            validationRules: [
+                {
+                    type: "stringLength",
+                    message: "Maximo 110 carateres",
+                    max : 110,
+                }
+            ]
         }, {
             dataField: "urlImagen",
+            validationRules: [
+                {
+                    type: "stringLength",
+                    message: "Maximo 500 carateres",
+                    max : 500,
+                }
+            ]
         }]
     }).dxDataGrid("instance");
 });

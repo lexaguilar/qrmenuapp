@@ -61,6 +61,8 @@ namespace qrmenuapp.Controllers
         public IActionResult Post([FromBody] Empresas empresa)
         {
             empresa.Name = empresa.DescripcionName.ToLower().Trim().Replace(" ","");
+            empresa.DescripcionName = empresa.DescripcionName.Trim();
+            
             db.Empresas.Add(empresa);
             db.SaveChanges();
             return Json(empresa);
