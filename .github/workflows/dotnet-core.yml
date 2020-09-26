@@ -32,3 +32,9 @@ jobs:
         app-name: qrmenu # Replace with your app name
         publish-profile: ${{ secrets.AZUREWEBAPPPUBLISHPROFILE }} # Replace with the name of your publish profile
         package: ./dotnetcorewebapp  
+    
+    - name: Send Push Notification
+      uses: techulus/push-github-action@1.0.0
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
+        MESSAGE: "Una nueva publicacion link http://qrcubeapp.eurekani.com/!"
