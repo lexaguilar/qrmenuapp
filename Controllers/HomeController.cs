@@ -30,6 +30,7 @@ namespace qrmenuapp.Controllers
         {
             var empresa = db.Empresas.Find(name);
             ViewData["Title"] = empresa.DescripcionName;
+            ViewData["qrcode"] = empresa.Name;
             return View();
         }
 
