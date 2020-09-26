@@ -75,10 +75,40 @@ $(function () {
             pageSize: 12
         },
         editing: {
-            mode: "row",
+            mode: "popup",
             allowUpdating: true,
             allowDeleting: true,
-            allowAdding: true
+            allowAdding: true,
+            popup: {
+                title: "Item",
+                showTitle: true,
+                width: 780,
+                height: 350,
+                position: {
+                    my: "top",
+                    at: "top",
+                    of: window
+                }
+            },
+            form: {
+                items: [{
+                    itemType: "group",
+                    colCount: 2,
+                    colSpan: 2,
+                    items: ["title", "categoriaId", "monedaId", "price",
+                    {
+                        dataField: "isSuggestion",
+                        colSpan: 2,                       
+                    },
+                    {
+                        dataField: "descripcion",
+                        colSpan: 2,                       
+                    },{
+                        dataField: "urlImagen",
+                        colSpan: 2,                       
+                    }]
+                }]
+            }
         },
         pager: {
             showPageSizeSelector: true,

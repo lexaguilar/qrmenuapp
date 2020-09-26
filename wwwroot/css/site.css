@@ -82,7 +82,19 @@ body {
 }
 
 .container {
-    padding-top: 20px;
-    width: 900px;
+    width: 1080px;
     margin-left: 100px;
+}
+
+.subcontainer {
+    width: 1120px;
+}
+
+.algo {
+    display: flex;
+}
+
+.img {
+    margin-right: 10px;
+    box-shadow: 16px 13em 20em 20px rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
