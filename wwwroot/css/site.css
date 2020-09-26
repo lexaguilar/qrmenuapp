@@ -91,7 +91,7 @@ body {
 }
 
 .algo {
-    display: flex;
+    display: -webkit-box;
 }
 
 .img {
