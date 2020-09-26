@@ -25,20 +25,10 @@ jobs:
       run: dotnet test --no-restore --verbosity normal       
     - name: Publish
       run: |
-        dotnet publish -c Release -o dotnetcorewebapp2 
-    
-    - name: Archive Release
-      uses: thedoctor0/zip-release@master
+        dotnet publish -c Release -o dotnetcorewebapp
+    - name: 'Run Azure webapp deploy action using publish profile credentials'
+      uses: azure/webapps-deploy@v1
       with:
-        path: 'dotnetcorewebapp2'
-        filename: 'release.zip'
-        exclusions: ''  
-    
-    - name: Upload bundle
-      uses: bayssmekanique/action-simple-file-upload@v1
-      with:
-        user: serviciostesting-001
-        password: ${{ secrets.FTP_PASSWORD }}
-        host: ftp.site4now.net
-        src: dotnetcorewebapp2/release.zip
-        dest: qrcubeapp/release.zip
+        app-name: qrmenu # Replace with your app name
+        publish-profile: ${{ secrets.AZUREWEBAPPPUBLISHPROFILE }} # Replace with the name of your publish profile
+        package: ./dotnetcorewebapp  
