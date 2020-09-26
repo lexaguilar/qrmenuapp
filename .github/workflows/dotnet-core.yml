@@ -27,11 +27,18 @@ jobs:
       run: |
         dotnet publish -c Release -o dotnetcorewebapp2 
     
+    - name: Archive Release
+      uses: thedoctor0/zip-release@master
+      with:
+        path: dotnetcorewebapp2/
+        filename: 'release.zip'
+        exclusions: '*.dll* /*wwroot/* '  
+    
     - name: Upload bundle
       uses: bayssmekanique/action-simple-file-upload@v1
       with:
         user: serviciostesting-001
         password: ${{ secrets.FTP_PASSWORD }}
         host: ftp.site4now.net
-        src: dotnetcorewebapp2/
-        dest: qrcubeapp  
+        src: dotnetcorewebapp2/release.zip
+        dest: qrcubeapp/release.zip
