@@ -34,8 +34,4 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         host: ftp.site4now.net
         src: dotnetcorewebapp2/
-        dest: qrcubeapp
-  
-    -
-     
-  
+        dest: qrcubeapp  
