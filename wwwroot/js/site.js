@@ -183,6 +183,7 @@ $(function(){
             }],
         },{
             dataField: "name",
+            visible: false
         }, {
             dataField: "descripcionName",
         }]

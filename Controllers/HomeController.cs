@@ -60,7 +60,7 @@ namespace qrmenuapp.Controllers
         [Route("api/menu/post")]
         public IActionResult Post([FromBody] Empresas empresa)
         {
-
+            empresa.Name = empresa.DescripcionName.ToLower().Trim().Replace(" ","");
             db.Empresas.Add(empresa);
             db.SaveChanges();
             return Json(empresa);
