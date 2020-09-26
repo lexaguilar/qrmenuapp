@@ -1,0 +1,13 @@
+{
+    "ConnectionStrings": {
+        "Default": "Server=SQL5080.site4now.net;Database=DB_A13B77_serviciostesting;User Id=DB_A13B77_serviciostesting_admin;Password=Leo0010019;"
+    },
+    "Logging": {
+        "LogLevel": {
+            "Default": "Information",
+            "Microsoft": "Warning",
+            "Microsoft.Hosting.Lifetime": "Information"
+        }
+    },
+    "AllowedHosts": "*"
+}

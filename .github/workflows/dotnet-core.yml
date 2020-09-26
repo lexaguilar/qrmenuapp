@@ -25,16 +25,10 @@ jobs:
       run: dotnet test --no-restore --verbosity normal       
     - name: Publish
       run: |
-        dotnet publish -c Release -o dotnetcorewebapp2 
-        
-    - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        dotnet publish -c Release -o dotnetcorewebapp
+    - name: 'Run Azure webapp deploy action using publish profile credentials'
+      uses: azure/webapps-deploy@v1
       with:
-        ftp-server: ftp://ftp.site4now.net/qrcubeapp/
-        ftp-username: serviciostesting-001
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
-        local_dir: dotnetcorewebapp2/
-        local-dir: dotnetcorewebapp2/
-        git-ftp-args: --all
-   
-  
+        app-name: qrmenu # Replace with your app name
+        publish-profile: ${{ secrets.AZUREWEBAPPPUBLISHPROFILE }} # Replace with the name of your publish profile
+        package: ./dotnetcorewebapp  
