@@ -33,7 +33,7 @@ jobs:
       with:
           user: serviciostesting-001 # Ftp user Ex:
           password: ${{ secrets.FTP_PASSWORD }} # Ftp password Ex:
-          host: ftp://ftp.site4now.net # Ftp host Ex:
+          host: ftp://ftp.site4now.net/ # Ftp host Ex:
           path: dotnetcorewebapp2/ # Folder to deploy Ex: apps/frontend/dist or dist
           into: qrcubeapp # Where to place the files in your ftp
           cleanupExisting: true # (Optional), Remove already ex
