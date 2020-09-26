@@ -26,16 +26,16 @@ jobs:
     - name: Publish
       run: |
         dotnet publish -c Release -o dotnetcorewebapp2 
-        
-  
-    - name: Publish
-      uses: isthatcentered/dist-to-ftp@master
+    
+    - name: Upload bundle
+      uses: bayssmekanique/action-simple-file-upload@v1
       with:
-          user: serviciostesting-001 # Ftp user Ex:
-          password: ${{ secrets.FTP_PASSWORD }} # Ftp password Ex:
-          host: ftp.site4now.net/ # Ftp host Ex:
-          path: dotnetcorewebapp2/ # Folder to deploy Ex: apps/frontend/dist or dist
-          into: qrcubeapp # Where to place the files in your ftp
-          cleanupExisting: true # (Optional), Remove already ex
+        user: serviciostesting-001
+        password: ${{ secrets.FTP_PASSWORD }}
+        host: ftp.site4now.net
+        src: dotnetcorewebapp2/
+        dest: qrcubeapp
+  
+    -
      
   
