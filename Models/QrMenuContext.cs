@@ -17,6 +17,7 @@ namespace qrmenuapp.Models
 
         public virtual DbSet<Categorias> Categorias { get; set; }
         public virtual DbSet<Empresas> Empresas { get; set; }
+        public virtual DbSet<ItemUserLike> ItemUserLike { get; set; }
         public virtual DbSet<Items> Items { get; set; }
         public virtual DbSet<Monedas> Monedas { get; set; }
 
@@ -56,6 +57,14 @@ namespace qrmenuapp.Models
                 entity.Property(e => e.UrlImagen)
                     .HasMaxLength(600)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ItemUserLike>(entity =>
+            {
+                entity.HasKey(e => new { e.ItemId, e.UserId });
+
+                entity.HasIndex(e => e.ItemId)
+                    .HasName("IX_ItemUserLike");
             });
 
             modelBuilder.Entity<Items>(entity =>

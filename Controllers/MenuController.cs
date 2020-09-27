@@ -8,8 +8,7 @@ using Microsoft.Extensions.Logging;
 using qrmenuapp.Models;
 
 namespace qrmenuapp.Controllers
-{
-    [Route("[controller]")]
+{    
     public class MenuController : Controller
     {
         private static readonly string[] Summaries = new[]
@@ -26,8 +25,33 @@ namespace qrmenuapp.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IActionResult Get(string name)
+        [Route("api/menu/item/{itemId}/user/{userId}/isLiked/{isLiked}")]
+        public IActionResult UpdateLike(int itemId, long userId, bool isLiked)
+        {
+            if(isLiked){
+                var itemUser = db.ItemUserLike.FirstOrDefault(c =>  c.ItemId == itemId && c.UserId == userId );
+                if(itemUser == null){
+                    
+                    db.ItemUserLike.Add(new ItemUserLike {ItemId = itemId, UserId = userId});
+                    db.SaveChanges();
+                }
+
+            }else{
+
+                var itemUser = db.ItemUserLike.FirstOrDefault(c =>  c.ItemId == itemId && c.UserId == userId );
+
+                if(itemUser != null){
+
+                    db.ItemUserLike.Remove(itemUser);
+                    db.SaveChanges();
+
+                }
+            }
+            return Json(new {isLiked});
+        }
+
+        [Route("api/menu/name/{name}/user/{userId}")]
+        public IActionResult Get(string name, long userId)
         {
 
             var menuClient = db.Empresas
@@ -42,6 +66,7 @@ namespace qrmenuapp.Controllers
             
             var items = menuClient.Items.Select(x => new
             {
+                x.Id,
                 x.Title,
                 Categoria = x.Categoria.Descripcion,
                 Moneda = x.Moneda.Descripcion,
@@ -50,7 +75,9 @@ namespace qrmenuapp.Controllers
                 x.EmpresaName,
                 x.Descripcion,
                 x.UrlImagen,
-                x.HasIva
+                x.HasIva,
+                IsLiked = db.ItemUserLike.FirstOrDefault( c =>  c.ItemId == x.Id && c.UserId == userId ) == null ? false : true,
+                likeCount =  db.ItemUserLike.Where(c => c.ItemId == x.Id).Count()
             });
 
 
