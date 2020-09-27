@@ -127,6 +127,7 @@ namespace qrmenuapp.Controllers
             itemOld.Title = item.Title;
             itemOld.UrlImagen = item.UrlImagen;
             itemOld.Descripcion = item.Descripcion;
+            itemOld.HasIva = item.HasIva;
 
             db.SaveChanges();
 

@@ -49,7 +49,8 @@ namespace qrmenuapp.Controllers
                 x.IsSuggestion,
                 x.EmpresaName,
                 x.Descripcion,
-                x.UrlImagen
+                x.UrlImagen,
+                x.HasIva
             });
 
 
