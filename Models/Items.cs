@@ -14,6 +14,7 @@ namespace qrmenuapp.Models
         public string EmpresaName { get; set; }
         public string Descripcion { get; set; }
         public string UrlImagen { get; set; }
+        public bool HasIva { get; set; }
 
         public virtual Categorias Categoria { get; set; }
         public virtual Empresas EmpresaNameNavigation { get; set; }

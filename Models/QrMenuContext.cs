@@ -72,6 +72,8 @@ namespace qrmenuapp.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.HasIva).HasColumnName("hasIva");
+
                 entity.Property(e => e.Price).HasColumnType("money");
 
                 entity.Property(e => e.Title)
