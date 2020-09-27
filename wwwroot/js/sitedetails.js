@@ -98,7 +98,9 @@ $(function () {
                     items: ["title", "categoriaId", "monedaId", "price",
                     {
                         dataField: "isSuggestion",
-                        colSpan: 2,                       
+                    },
+                    {
+                        dataField: "hasIva",  
                     },
                     {
                         dataField: "descripcion",
@@ -173,6 +175,9 @@ $(function () {
             ]
         }, {
             dataField: "isSuggestion",
+            dataType: 'boolean',
+        }, {
+            dataField: "hasIva",
             dataType: 'boolean',
         }, {
             dataField: "descripcion",
