@@ -13,6 +13,8 @@ namespace qrmenuapp.Models
         public string Name { get; set; }
         public string DescripcionName { get; set; }
         public string UrlImagen { get; set; }
+        public int Valoration { get; set; }
+        public double Rating { get; set; }
 
         public virtual ICollection<Items> Items { get; set; }
     }

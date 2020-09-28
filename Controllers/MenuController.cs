@@ -51,7 +51,7 @@ namespace qrmenuapp.Controllers
         }
 
         [Route("api/menu/item/{itemId}/user/{userId}/valoration/{valoration}")]
-        public IActionResult SetValoration(int itemId, long userId, int valoration)
+        public async Task<IActionResult> SetValoration(int itemId, long userId, int valoration)
         {
             var itemValoration = db.ItemValoration.FirstOrDefault(x => x.ItemId == itemId && x.UserId == userId);
             if (itemValoration == null)
@@ -61,12 +61,28 @@ namespace qrmenuapp.Controllers
                 };
 
                 db.ItemValoration.Add(newItemValoration);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
 
             }else{
                 itemValoration.Valoration = valoration;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
+
+            var item = db.Items.FirstOrDefault(x => x.Id == itemId);
+            if(item != null){
+                var empresa = db.Empresas.FirstOrDefault(x => x.Name == item.EmpresaName);
+                if(empresa != null){
+
+                    var result = from c in db.Items 
+                    join v in db.ItemValoration on c.Id equals v.ItemId 
+                    where c.EmpresaName == empresa.Name
+                    select v;
+
+                    empresa.Rating = result.Average(x => x.Valoration);
+                    db.SaveChangesAsync();
+                }
+            }
+
             return Json(new {valoration});
         }
 
@@ -75,7 +91,7 @@ namespace qrmenuapp.Controllers
             var itemValoration = db.ItemValoration.FirstOrDefault( c =>  c.ItemId == itemId && c.UserId == userId);
 
             return Json(new {
-                itemValoration = itemValoration == null ? 0 : itemValoration.Valoration
+                valoration = itemValoration == null ? 0 : itemValoration.Valoration
             });
         }
 
@@ -114,6 +130,7 @@ namespace qrmenuapp.Controllers
             return Json(new {
                 Name=menuClient.Name,
                 DescripcionName=menuClient.DescripcionName,
+                Rating = menuClient.Rating,
                 UrlImagen=menuClient.UrlImagen,
                 items
             });
