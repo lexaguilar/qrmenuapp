@@ -107,7 +107,7 @@ namespace qrmenuapp.Controllers
                 x.HasIva,
                 IsLiked = db.ItemUserLike.FirstOrDefault( c =>  c.ItemId == x.Id && c.UserId == userId ) == null ? false : true,
                 likeCount =  db.ItemUserLike.Where(c => c.ItemId == x.Id).Count(),
-                Valoration = db.ItemValoration.Where(c => c.ItemId == x.Id).Average(x => x.Valoration)
+                Valoration = db.ItemValoration.FirstOrDefault(c => c.ItemId == x.Id) == null ? 0 : db.ItemValoration.Where(c => c.ItemId == x.Id).Average(x => x.Valoration)
             });
 
 
