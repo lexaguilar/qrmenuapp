@@ -50,6 +50,35 @@ namespace qrmenuapp.Controllers
             return Json(new {isLiked});
         }
 
+        [Route("api/menu/item/{itemId}/user/{userId}/valoration/{valoration}")]
+        public IActionResult SetValoration(int itemId, long userId, int valoration)
+        {
+            var itemValoration = db.ItemValoration.FirstOrDefault(x => x.ItemId == itemId && x.UserId == userId);
+            if (itemValoration == null)
+            {
+                var newItemValoration = new ItemValoration{
+                    ItemId = itemId, UserId = userId, Valoration = valoration
+                };
+
+                db.ItemValoration.Add(newItemValoration);
+                db.SaveChanges();
+
+            }else{
+                itemValoration.Valoration = valoration;
+                db.SaveChanges();
+            }
+            return Json(new {valoration});
+        }
+
+        [Route("api/menu/item/{itemId}/user/{userId}/valoration")]
+        public IActionResult GetValorationUser(int itemId, long userId){
+            var itemValoration = db.ItemValoration.FirstOrDefault( c =>  c.ItemId == itemId && c.UserId == userId);
+
+            return Json(new {
+                itemValoration = itemValoration == null ? 0 : itemValoration.Valoration
+            });
+        }
+
         [Route("api/menu/name/{name}/user/{userId}")]
         public IActionResult Get(string name, long userId)
         {
@@ -77,7 +106,8 @@ namespace qrmenuapp.Controllers
                 x.UrlImagen,
                 x.HasIva,
                 IsLiked = db.ItemUserLike.FirstOrDefault( c =>  c.ItemId == x.Id && c.UserId == userId ) == null ? false : true,
-                likeCount =  db.ItemUserLike.Where(c => c.ItemId == x.Id).Count()
+                likeCount =  db.ItemUserLike.Where(c => c.ItemId == x.Id).Count(),
+                Valoration = db.ItemValoration.Where(c => c.ItemId == x.Id).Average(x => x.Valoration)
             });
 
 
